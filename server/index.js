@@ -1,9 +1,10 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const RegisterationModel = require("./Models/Registrations");
+const RegistrationModel = require("./Models/Registrations");
 
-const cors = require("cors");
+const cors = require("cors");  // This allows us to connect this api with our react frontend
+// const { request } = require("express");
 
 app.use(express.json());
 app.use(cors());
@@ -13,7 +14,7 @@ mongoose.connect(
 );
 
 app.get("/getRegistrations", (req, res) => {
-  RegisterationModel.find({}, (err, results) => {
+  RegistrationModel.find({}, (err, results) => {
     if (err) {
       res.json(err);
     } else {
@@ -24,7 +25,7 @@ app.get("/getRegistrations", (req, res) => {
 
 app.post("/createRegistration", async (req, res) => {
   const registration = req.body;
-  const newRegistration = new RegisterationModel(registration);
+  const newRegistration = new RegistrationModel(registration);
   await newRegistration.save();
 
   res.json(registration);

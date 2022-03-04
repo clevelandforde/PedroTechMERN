@@ -8,7 +8,7 @@ const RegistrationSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  RegNo: {
+  regNo: {
     type: Number,
     required: true,
   },
